@@ -75,6 +75,8 @@ export default function WorksCategory() {
               marginTop: i === 0 ? 0 : 18,
               maxWidth: 700,
               textShadow: background ? "0 1px 8px rgba(0,0,0,0.6)" : "none",
+              fontFamily: p.split(" ").length <= 6 ? fonts.display : fonts.body,
+              fontSize: p.split(" ").length <= 6 ? 22 : 17,
             }}
           >
             {p}
@@ -99,9 +101,10 @@ export default function WorksCategory() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(520px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
               gap: 32,
               marginTop: 48,
+              alignItems: "start",
             }}
           >
             {images.map((src, i) => (
@@ -112,22 +115,31 @@ export default function WorksCategory() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ scale: 1.02 }}
-                style={{
-                  border: `1px solid ${background ? "rgba(255,255,255,0.2)" : colors.line}`,
-                  background: colors.paperRaised,
-                  aspectRatio: "4 / 3",
+                                style={{
+                  border: "none",
+                  background: "transparent",
                   overflow: "hidden",
                   cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "fit-content",
+                  margin: "0 auto",
                 }}
               >
                 <motion.img
                   src={src}
                   alt={`${category.title} ${i + 1}`}
-                  initial={{ scale: 1.12 }}
+                  initial={{ scale: 1.05 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.9, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    maxHeight: "80vh",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
                 />
               </motion.div>
             ))}

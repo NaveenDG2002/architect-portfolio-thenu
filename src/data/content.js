@@ -16,7 +16,7 @@ export const workCategories = [
     slug: "2d-3d",
     title: "2D / 3D Representation",
     description:
-      "Placeholder text for 2D and 3D representation work — drawings, renders, and digital models. Replace with a real project description.",
+      "The 2D Concept Art\n\nThe accompanying 2D drawing presents the foundational concept of the project, \"Revealing Paththini,\" by detailing the divine protection she offers and the nature of her emanations. This technical illustration is divided into two key conceptual zones. The upper section symbolizes Paththini as a primary source of unconditional spiritual protection. It includes diagrammatic elements where textual banners, such as \"Life-long Protection\" and \"Location,\" delineate specific areas of life over which she watches, linked by an interconnected network of energy paths. The lower section of the diagram provides a comparative chart of her seven distinct avatars (or \"avetars\"). This classification system uses illustrative symbols (e.g., specific flowers, tools, or elements) and coded data points to denote the unique domain, protective quality, and historical iteration of each avatar, revealing the complex facets of her all-encompassing grace.\n\nThe 3D Spiritual Wind Chime\n\nThe 3D physical installation materializes Paththini's presence into a tangible spiritual object: a conceptual wind chime. It represents the human belief in a profound spiritual power that provides continuous, unseen protection from birth until death. In this model, the top carved coconut husk element, engraved with \"Life-long Protection,\" acts as the anchor point, symbolizing Paththini as the central, unshakable source of grace. Below this, a system of interconnected orange cords represents the threads of life and fate. Suspended from these are two symbolic vessels — a white ceramic cup and a black ceramic cup — denoting the cycles of life and death, day and night, or creation and dissolution, respectively. Hanging from the bottom of each cup is a textured, leaf-shaped coconut pendant, representing the souls of individuals living under the constant watch of this spiritual network, designed to move and resonate with the natural currents of wind and time.",
   },
   {
     slug: "room-design",
@@ -77,6 +77,13 @@ export const achievements = [
     year: "2026",
     title: "Exhibition Selected — Best 2nd Year Design Project",
     detail: "Studio Design, SLIIT University",
+  },
+
+  {
+    slug: "2d-3d",
+    title: "2D / 3D Representation",
+    description:
+      "The 2D Concept Art\n\nThe accompanying 2D drawing presents the foundational concept of the project, \"Revealing Paththini,\" by detailing the divine protection she offers and the nature of her emanations. This technical illustration is divided into two key conceptual zones. The upper section symbolizes Paththini as a primary source of unconditional spiritual protection. It includes diagrammatic elements where textual banners, such as \"Life-long Protection\" and \"Location,\" delineate specific areas of life over which she watches, linked by an interconnected network of energy paths. The lower section of the diagram provides a comparative chart of her seven distinct avatars (or \"avetars\"). This classification system uses illustrative symbols (e.g., specific flowers, tools, or elements) and coded data points to denote the unique domain, protective quality, and historical iteration of each avatar, revealing the complex facets of her all-encompassing grace.\n\nThe 3D Spiritual Wind Chime\n\nThe 3D physical installation materializes Paththini's presence into a tangible spiritual object: a conceptual wind chime. It represents the human belief in a profound spiritual power that provides continuous, unseen protection from birth until death. In this model, the top carved coconut husk element, engraved with \"Life-long Protection,\" acts as the anchor point, symbolizing Paththini as the central, unshakable source of grace. Below this, a system of interconnected orange cords represents the threads of life and fate. Suspended from these are two symbolic vessels — a white ceramic cup and a black ceramic cup — denoting the cycles of life and death, day and night, or creation and dissolution, respectively. Hanging from the bottom of each cup is a textured, leaf-shaped coconut pendant, representing the souls of individuals living under the constant watch of this spiritual network, designed to move and resonate with the natural currents of wind and time.",
   },
 ];
 
