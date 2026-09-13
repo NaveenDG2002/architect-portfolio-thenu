@@ -38,7 +38,6 @@ function Lightbox({ images, index, onClose, onPrev, onNext, category }) {
         padding: "24px",
       }}
     >
-      {/* Close button */}
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -63,7 +62,6 @@ function Lightbox({ images, index, onClose, onPrev, onNext, category }) {
         ✕
       </button>
 
-      {/* Counter */}
       <span
         style={{
           position: "fixed",
@@ -77,7 +75,6 @@ function Lightbox({ images, index, onClose, onPrev, onNext, category }) {
         {index + 1} / {images.length} — {category.title}
       </span>
 
-      {/* Prev arrow */}
       {images.length > 1 && (
         <button
           onClick={(e) => {
@@ -104,7 +101,6 @@ function Lightbox({ images, index, onClose, onPrev, onNext, category }) {
         </button>
       )}
 
-      {/* Next arrow */}
       {images.length > 1 && (
         <button
           onClick={(e) => {
@@ -177,6 +173,10 @@ export default function WorksCategory() {
 
   const paragraphs = category.description.split("\n\n");
   const useCover = category.imageFit === "cover";
+  const textColor = background ? "#ffffff" : colors.ink;
+  const softTextColor = background ? "rgba(255,255,255,0.85)" : colors.inkSoft;
+  const lineColor = background ? "rgba(255,255,255,0.2)" : colors.line;
+  const shadow = background ? "0 1px 8px rgba(0,0,0,0.6)" : "none";
 
   return (
     <motion.div
@@ -223,6 +223,62 @@ export default function WorksCategory() {
           padding: background ? "64px 24px 96px" : "0 0",
         }}
       >
+        {category.subtitle && (
+          <p
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 13,
+              color: background ? "#a8c1e8" : colors.blue,
+              marginBottom: 8,
+              textShadow: shadow,
+            }}
+          >
+            {category.subtitle}
+          </p>
+        )}
+
+        {category.meta && category.meta.length > 0 && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+              gap: 20,
+              padding: "20px 0",
+              marginBottom: 24,
+              borderTop: `1px solid ${lineColor}`,
+              borderBottom: `1px solid ${lineColor}`,
+              maxWidth: 900,
+            }}
+          >
+            {category.meta.map((m) => (
+              <div key={m.label}>
+                <p
+                  style={{
+                    fontFamily: fonts.mono,
+                    fontSize: 11,
+                    textTransform: "uppercase",
+                    letterSpacing: 0.5,
+                    color: background ? "rgba(255,255,255,0.6)" : colors.inkSoft,
+                    margin: 0,
+                  }}
+                >
+                  {m.label}
+                </p>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: textColor,
+                    marginTop: 4,
+                    textShadow: shadow,
+                  }}
+                >
+                  {m.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
         {paragraphs.map((p, i) => (
           <p
             key={i}
@@ -232,7 +288,7 @@ export default function WorksCategory() {
               color: background ? "#ffffff" : colors.inkSoft,
               marginTop: i === 0 ? 0 : 18,
               maxWidth: 700,
-              textShadow: background ? "0 1px 8px rgba(0,0,0,0.6)" : "none",
+              textShadow: shadow,
               fontFamily: p.split(" ").length <= 6 ? fonts.display : fonts.body,
               fontSize: p.split(" ").length <= 6 ? 22 : 17,
             }}
@@ -240,6 +296,57 @@ export default function WorksCategory() {
             {p}
           </p>
         ))}
+
+        {category.quote && (
+          <motion.blockquote
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              margin: "36px 0",
+              padding: "4px 0 4px 24px",
+              borderLeft: `2px solid ${background ? "#a8c1e8" : colors.blue}`,
+              maxWidth: 640,
+              fontFamily: fonts.display,
+              fontSize: 20,
+              lineHeight: 1.5,
+              fontStyle: "italic",
+              color: textColor,
+              textShadow: shadow,
+            }}
+          >
+            {category.quote}
+          </motion.blockquote>
+        )}
+
+        {category.keywords && category.keywords.length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 10,
+              marginTop: 8,
+              marginBottom: 8,
+            }}
+          >
+            {category.keywords.map((k) => (
+              <span
+                key={k}
+                style={{
+                  fontFamily: fonts.mono,
+                  fontSize: 11,
+                  padding: "6px 12px",
+                  border: `1px solid ${lineColor}`,
+                  color: softTextColor,
+                  textShadow: shadow,
+                }}
+              >
+                {k}
+              </span>
+            ))}
+          </div>
+        )}
 
         {category.features && category.features.length > 0 && (
           <motion.div
@@ -253,9 +360,9 @@ export default function WorksCategory() {
               style={{
                 fontFamily: fonts.display,
                 fontSize: 20,
-                color: background ? "#ffffff" : colors.ink,
-                textShadow: background ? "0 1px 8px rgba(0,0,0,0.6)" : "none",
-                borderBottom: `1px solid ${background ? "rgba(255,255,255,0.25)" : colors.line}`,
+                color: textColor,
+                textShadow: shadow,
+                borderBottom: `1px solid ${lineColor}`,
                 paddingBottom: 12,
               }}
             >
@@ -273,7 +380,7 @@ export default function WorksCategory() {
                     display: "flex",
                     gap: 16,
                     padding: "16px 0",
-                    borderBottom: `1px solid ${background ? "rgba(255,255,255,0.12)" : colors.line}`,
+                    borderBottom: `1px solid ${lineColor}`,
                   }}
                 >
                   <span
@@ -292,8 +399,8 @@ export default function WorksCategory() {
                         margin: 0,
                         fontSize: 15,
                         fontFamily: fonts.display,
-                        color: background ? "#ffffff" : colors.ink,
-                        textShadow: background ? "0 1px 6px rgba(0,0,0,0.5)" : "none",
+                        color: textColor,
+                        textShadow: shadow,
                       }}
                     >
                       {f.title}
@@ -303,8 +410,8 @@ export default function WorksCategory() {
                         margin: "6px 0 0",
                         fontSize: 14,
                         lineHeight: 1.6,
-                        color: background ? "rgba(255,255,255,0.85)" : colors.inkSoft,
-                        textShadow: background ? "0 1px 6px rgba(0,0,0,0.5)" : "none",
+                        color: softTextColor,
+                        textShadow: shadow,
                       }}
                     >
                       {f.detail}
@@ -320,12 +427,12 @@ export default function WorksCategory() {
           <div
             style={{
               marginTop: 32,
-              border: `1px dashed ${background ? "rgba(255,255,255,0.35)" : colors.line}`,
+              border: `1px dashed ${lineColor}`,
               padding: 40,
               textAlign: "center",
               fontFamily: fonts.mono,
               fontSize: 12,
-              color: background ? "#f0eee8" : colors.inkSoft,
+              color: softTextColor,
             }}
           >
             Add images to src/assets/works/{category.slug}/
@@ -349,9 +456,7 @@ export default function WorksCategory() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  border: useCover
-                    ? `1px solid ${background ? "rgba(255,255,255,0.2)" : colors.line}`
-                    : "none",
+                  border: useCover ? `1px solid ${lineColor}` : "none",
                   background: useCover ? colors.paperRaised : "transparent",
                   overflow: "hidden",
                   cursor: "zoom-in",

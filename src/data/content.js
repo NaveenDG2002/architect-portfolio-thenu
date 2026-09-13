@@ -72,11 +72,33 @@ export const workCategories = [
       },
     ],
   },
-  {
+    {
     slug: "hostel-project",
     title: "Hostel Project",
+    subtitle: "Layers of Kandy — Community in Terraces",
+    meta: [
+      { label: "Project Type", value: "Student Hostel" },
+      { label: "Location", value: "SLIIT Kandy Campus, Pallekele, Sri Lanka" },
+      { label: "Scale", value: "G+3" },
+      { label: "Capacity", value: "220 Students" },
+      { label: "Design Theme", value: "Multi-Story Built Spaces & Community Living" },
+    ],
     description:
-      "Placeholder text for a hostel design project. Replace with the real brief, site, and design response.",
+      "The SLIIT Kandy Students Hostel is designed as a layered living environment that responds to the natural topography of Kandy. Rather than treating the site as a flat platform, the building follows the existing contours, creating a series of stepped levels that integrate architecture, landscape, and community spaces.\n\nThe design is developed within the designated buildable area while preserving the existing trees. The building mass is carefully positioned around these natural elements, allowing trees to become part of courtyards, gathering spaces, and the everyday experience of the hostel.\n\nInspired by the terraced landscapes of Kandy and the spatial sequencing of Lunuganga, the building is organized as interconnected layers. Each level creates opportunities for interaction, study, recreation, and retreat while maintaining a gradual transition from public to semi-public to private spaces.\n\nThe central open spaces act as the social heart of the hostel, connecting students visually and physically through terraces, steps, bridges, and landscaped courtyards. The result is not simply a residential building, but a vertical community shaped by the landscape.",
+    quote:
+      "The hostel becomes a continuation of Kandy's landscape — layered with terrain, trees, movement and community.",
+    keywords: [
+      "Layered Topography",
+      "Community Living",
+      "Existing Trees",
+      "Terraced Spaces",
+      "Social Interaction",
+      "Privacy Gradient",
+      "Courtyards",
+      "Connectivity",
+      "Kandy Identity",
+      "Climate Responsive Design",
+    ],
   },
 ];
 
