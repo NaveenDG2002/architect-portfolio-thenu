@@ -6,8 +6,12 @@ import { profile } from "../data/content";
 const links = [
   { to: "/", label: "Cover" },
   { to: "/works", label: "Academic" },
+  { to: "/achievements", label: "Achievements" },
+  { to: "/contact", label: "Industrial" },
   { to: "/process", label: "Process" },
   { to: "/contact", label: "Contact" },
+  
+  
 ];
 
 export default function Nav() {

@@ -5,6 +5,18 @@ import { workCategories } from "../data/content";
 import { workImagesBySlug, backgroundBySlug } from "../utils/loadImages";
 import { colors, fonts } from "../styles/theme";
 
+const sectionImageModules = import.meta.glob(
+  "../assets/works/*/*.{jpg,jpeg,png,JPG,JPEG,PNG}",
+  { eager: true, import: "default" }
+);
+
+function getSectionImageSrc(slug, filename) {
+  const key = Object.keys(sectionImageModules).find((k) =>
+    k.endsWith(`/works/${slug}/${filename}`)
+  );
+  return key ? sectionImageModules[key] : null;
+}
+
 function Lightbox({ images, index, onClose, onPrev, onNext, category }) {
   useEffect(() => {
     function onKeyDown(e) {
@@ -153,14 +165,24 @@ export default function WorksCategory() {
   const background = backgroundBySlug[slug];
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
+  const hasSections = Array.isArray(category?.sections) && category.sections.length > 0;
+
+  const sectionImageList = hasSections
+    ? category.sections
+        .map((s) => (s.image ? getSectionImageSrc(slug, s.image) : null))
+        .filter(Boolean)
+    : [];
+
+  const lightboxImages = hasSections ? sectionImageList : images;
+
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const prevImage = useCallback(
-    () => setLightboxIndex((i) => (i - 1 + images.length) % images.length),
-    [images.length]
+    () => setLightboxIndex((i) => (i - 1 + lightboxImages.length) % lightboxImages.length),
+    [lightboxImages.length]
   );
   const nextImage = useCallback(
-    () => setLightboxIndex((i) => (i + 1) % images.length),
-    [images.length]
+    () => setLightboxIndex((i) => (i + 1) % lightboxImages.length),
+    [lightboxImages.length]
   );
 
   if (!category) {
@@ -171,7 +193,7 @@ export default function WorksCategory() {
     );
   }
 
-  const paragraphs = category.description.split("\n\n");
+  const paragraphs = category.description ? category.description.split("\n\n") : [];
   const useCover = category.imageFit === "cover";
   const textColor = background ? "#ffffff" : colors.ink;
   const softTextColor = background ? "rgba(255,255,255,0.85)" : colors.inkSoft;
@@ -279,23 +301,96 @@ export default function WorksCategory() {
           </div>
         )}
 
-        {paragraphs.map((p, i) => (
-          <p
-            key={i}
-            style={{
-              fontSize: 17,
-              lineHeight: 1.75,
-              color: background ? "#ffffff" : colors.inkSoft,
-              marginTop: i === 0 ? 0 : 18,
-              maxWidth: 700,
-              textShadow: shadow,
-              fontFamily: p.split(" ").length <= 6 ? fonts.display : fonts.body,
-              fontSize: p.split(" ").length <= 6 ? 22 : 17,
-            }}
-          >
-            {p}
-          </p>
-        ))}
+        {hasSections ? (
+          <div style={{ marginTop: 8 }}>
+            {category.sections.map((s, si) => {
+              const imgSrc = s.image ? getSectionImageSrc(slug, s.image) : null;
+              const lightboxIdx = imgSrc ? sectionImageList.indexOf(imgSrc) : -1;
+              const sectionParagraphs = s.text ? s.text.split("\n\n") : [];
+
+              return (
+                <div key={si} style={{ marginTop: si === 0 ? 0 : 56 }}>
+                  {s.heading && (
+                    <h2
+                      style={{
+                        fontFamily: fonts.display,
+                        fontSize: "clamp(1.4rem, 3vw, 1.9rem)",
+                        color: textColor,
+                        textShadow: shadow,
+                        marginBottom: 16,
+                      }}
+                    >
+                      {s.heading}
+                    </h2>
+                  )}
+
+                  {sectionParagraphs.map((p, pi) => (
+                    <p
+                      key={pi}
+                      style={{
+                        fontSize: 17,
+                        lineHeight: 1.75,
+                        color: background ? "#ffffff" : colors.inkSoft,
+                        marginTop: pi === 0 ? 0 : 18,
+                        maxWidth: 700,
+                        textShadow: shadow,
+                      }}
+                    >
+                      {p}
+                    </p>
+                  ))}
+
+                  {imgSrc && (
+                    <motion.div
+                      onClick={() => setLightboxIndex(lightboxIdx)}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.6 }}
+                      style={{
+                        marginTop: 28,
+                        cursor: "zoom-in",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        width: "fit-content",
+                      }}
+                    >
+                      <img
+                        src={imgSrc}
+                        alt={s.imageAlt || s.heading || category.title}
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "70vh",
+                          objectFit: "contain",
+                          display: "block",
+                          border: `1px solid ${lineColor}`,
+                        }}
+                      />
+                    </motion.div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          paragraphs.map((p, i) => (
+            <p
+              key={i}
+              style={{
+                fontSize: 17,
+                lineHeight: 1.75,
+                color: background ? "#ffffff" : colors.inkSoft,
+                marginTop: i === 0 ? 0 : 18,
+                maxWidth: 700,
+                textShadow: shadow,
+                fontFamily: p.split(" ").length <= 6 ? fonts.display : fonts.body,
+                fontSize: p.split(" ").length <= 6 ? 22 : 17,
+              }}
+            >
+              {p}
+            </p>
+          ))
+        )}
 
         {category.quote && (
           <motion.blockquote
@@ -423,78 +518,80 @@ export default function WorksCategory() {
           </motion.div>
         )}
 
-        {images.length === 0 ? (
-          <div
-            style={{
-              marginTop: 32,
-              border: `1px dashed ${lineColor}`,
-              padding: 40,
-              textAlign: "center",
-              fontFamily: fonts.mono,
-              fontSize: 12,
-              color: softTextColor,
-            }}
-          >
-            Add images to src/assets/works/{category.slug}/
-          </div>
-        ) : (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-              gap: 32,
-              marginTop: 48,
-              alignItems: useCover ? "stretch" : "start",
-            }}
-          >
-            {images.map((src, i) => (
-              <motion.div
-                key={i}
-                onClick={() => setLightboxIndex(i)}
-                initial={{ opacity: 0, y: 60, scale: 0.94 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  border: useCover ? `1px solid ${lineColor}` : "none",
-                  background: useCover ? colors.paperRaised : "transparent",
-                  overflow: "hidden",
-                  cursor: "zoom-in",
-                  display: "flex",
-                  justifyContent: "center",
-                  aspectRatio: useCover ? "4 / 3" : undefined,
-                  width: useCover ? "auto" : "fit-content",
-                  margin: useCover ? 0 : "0 auto",
-                }}
-              >
-                <motion.img
-                  src={src}
-                  alt={`${category.title} ${i + 1}`}
-                  initial={{ scale: useCover ? 1.15 : 1.05 }}
-                  whileInView={{ scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
+        {!hasSections && (
+          images.length === 0 ? (
+            <div
+              style={{
+                marginTop: 32,
+                border: `1px dashed ${lineColor}`,
+                padding: 40,
+                textAlign: "center",
+                fontFamily: fonts.mono,
+                fontSize: 12,
+                color: softTextColor,
+              }}
+            >
+              Add images to src/assets/works/{category.slug}/
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+                gap: 32,
+                marginTop: 48,
+                alignItems: useCover ? "stretch" : "start",
+              }}
+            >
+              {images.map((src, i) => (
+                <motion.div
+                  key={i}
+                  onClick={() => setLightboxIndex(i)}
+                  initial={{ opacity: 0, y: 60, scale: 0.94 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{
-                    scale: { duration: 0.9, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
-                  }}
+                  transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
                   style={{
-                    width: "100%",
-                    height: useCover ? "100%" : "auto",
-                    maxHeight: useCover ? "none" : "80vh",
-                    objectFit: useCover ? "cover" : "contain",
-                    display: "block",
+                    border: useCover ? `1px solid ${lineColor}` : "none",
+                    background: useCover ? colors.paperRaised : "transparent",
+                    overflow: "hidden",
+                    cursor: "zoom-in",
+                    display: "flex",
+                    justifyContent: "center",
+                    aspectRatio: useCover ? "4 / 3" : undefined,
+                    width: useCover ? "auto" : "fit-content",
+                    margin: useCover ? 0 : "0 auto",
                   }}
-                />
-              </motion.div>
-            ))}
-          </div>
+                >
+                  <motion.img
+                    src={src}
+                    alt={`${category.title} ${i + 1}`}
+                    initial={{ scale: useCover ? 1.15 : 1.05 }}
+                    whileInView={{ scale: 1 }}
+                    whileHover={{ scale: 1.05 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      scale: { duration: 0.9, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+                    }}
+                    style={{
+                      width: "100%",
+                      height: useCover ? "100%" : "auto",
+                      maxHeight: useCover ? "none" : "80vh",
+                      objectFit: useCover ? "cover" : "contain",
+                      display: "block",
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          )
         )}
       </div>
 
       <AnimatePresence>
         {lightboxIndex !== null && (
           <Lightbox
-            images={images}
+            images={lightboxImages}
             index={lightboxIndex}
             onClose={closeLightbox}
             onPrev={prevImage}

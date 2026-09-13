@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Works from "./pages/Works";
 import WorksCategory from "./pages/WorksCategory";
+import Achievements from "./pages/Achievements";
 import Contact from "./pages/Contact";
 
 export default function App() {
@@ -14,9 +15,11 @@ export default function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/works" element={<Works />}>
-            <Route index element={<Navigate to="room-design" replace />} />
+            <Route index element={<Navigate to="2d-3d" replace />} />
             <Route path=":slug" element={<WorksCategory />} />
           </Route>
+
+          <Route path="/achievements" element={<Achievements />} />
 
           <Route path="/contact" element={<Contact />} />
         </Routes>
