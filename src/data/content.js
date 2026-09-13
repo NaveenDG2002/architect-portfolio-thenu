@@ -48,11 +48,30 @@ export const workCategories = [
     description:
       "Placeholder text for a service center design. Replace with the real brief and approach.",
   },
-  {
+    {
     slug: "adaptive-reuse",
     title: "Adaptive Reuse",
+    imageFit: "cover",
     description:
-      "Placeholder text for an adaptive reuse project — reworking an existing structure for new use. Replace with the real project narrative.",
+      "This adaptive reuse project transforms the historic railway quarters in Dematagoda into a dynamic community performing platform. Historically, the Burgher community gathered and cultivated their rich cultural identity within this neighborhood. Drawing inspiration from that legacy, the design reimagines the physical architecture of a traditional railway platform into a vibrant space for artistic expression, social gatherings, and cultural events.\n\nAlongside the central performance space, the project integrates a museum, dining spaces, and a restaurant. As visitors move through the site, the spatial flow, materials, and sightlines evoke the immersive experience of stepping onto an authentic railway platform — bridging Dematagoda's rail history with contemporary public life.",
+    features: [
+      {
+        title: "Central Performing Platform",
+        detail: "A multi-use community space inspired by railway platform geometry for gatherings, live performances, and cultural exchanges.",
+      },
+      {
+        title: "Burgher Cultural Museum",
+        detail: "Dedicated exhibition areas honoring the local Burgher heritage and the history of the Dematagoda railway settlement.",
+      },
+      {
+        title: "Integrated Dining & Social Hub",
+        detail: "Restaurant and dining spaces designed seamlessly into the platform circulation to create a welcoming public destination.",
+      },
+      {
+        title: "Immersive Spatial Experience",
+        detail: "Architectural elements that give visitors the distinct sensation of walking through a historic railway station.",
+      },
+    ],
   },
   {
     slug: "hostel-project",
