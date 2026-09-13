@@ -176,7 +176,8 @@ export default function Home() {
             style={{
               border: `1px solid ${colors.line}`,
               background: colors.paperRaised,
-              aspectRatio: "4 / 5",
+              aspectRatio: "1 / 1",
+              borderRadius: "50%",
               overflow: "hidden",
               position: "relative",
             }}
@@ -196,6 +197,7 @@ export default function Home() {
                 color: colors.inkSoft,
                 background: colors.paper,
                 padding: "2px 6px",
+                borderRadius: 4,
               }}
             >
               Fig. 01

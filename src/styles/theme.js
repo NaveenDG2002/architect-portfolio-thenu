@@ -1,11 +1,11 @@
 export const colors = {
-  paper: "#f3ede3",
-  paperRaised: "#fbf8f2",
-  ink: "#1c2624",
-  inkSoft: "#5f5a50",
-  blue: "#c1622e",
-  redline: "#1f4b49",
-  line: "#ddd3c2",
+  paper: "#0e1013",
+  paperRaised: "#16191d",
+  ink: "#e8e5df",
+  inkSoft: "#9a968c",
+  blue: "#6b2f3a",
+  redline: "#1f2a3d",
+  line: "#2a2d33",
 };
 
 export const fonts = {

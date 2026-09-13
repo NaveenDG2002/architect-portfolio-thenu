@@ -1,23 +1,39 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { colors, fonts } from "../styles/theme";
+import { backgroundBySlug } from "../utils/loadImages";
+import { profile } from "../data/content";
 
 const links = [
-  { to: "/",  label: "Cover" },
+  { to: "/", label: "Cover" },
   { to: "/works", label: "Academic" },
-  { to: "/process",  label: "Process" },
-  { to: "/contact",  label: "Contact" },
+  { to: "/process", label: "Process" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function Nav() {
+  const location = useLocation();
+  const match = location.pathname.match(/^\/works\/([^/]+)/);
+  const slug = match ? match[1] : null;
+  const onPhotoBackground = Boolean(slug && backgroundBySlug[slug]);
+
+  const navBg = onPhotoBackground ? "rgba(10, 11, 12, 0.35)" : colors.paper;
+  const borderColor = onPhotoBackground ? "rgba(255,255,255,0.15)" : colors.line;
+  const textColor = onPhotoBackground ? "#ffffff" : colors.ink;
+  const softColor = onPhotoBackground ? "rgba(255,255,255,0.75)" : colors.inkSoft;
+  const activeColor = onPhotoBackground ? "#a8c1e8" : colors.blue;
+
   return (
     <header
       style={{
         position: "sticky",
         top: 0,
         zIndex: 40,
-        borderBottom: `1px solid ${colors.line}`,
-        background: colors.paper,
+        borderBottom: `1px solid ${borderColor}`,
+        background: navBg,
+        backdropFilter: onPhotoBackground ? "blur(12px)" : "none",
+        WebkitBackdropFilter: onPhotoBackground ? "blur(12px)" : "none",
         padding: "16px 24px",
+        transition: "background 0.3s ease, border-color 0.3s ease, color 0.3s ease",
       }}
     >
       <div
@@ -31,8 +47,11 @@ export default function Nav() {
           gap: 16,
         }}
       >
-        <NavLink to="/" style={{ fontFamily: fonts.display, fontSize: 14, color: colors.ink }}>
-          Thenu Amarathunge
+        <NavLink
+          to="/"
+          style={{ fontFamily: fonts.display, fontSize: 14, color: textColor }}
+        >
+          {profile.name}
         </NavLink>
 
         <nav style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
@@ -43,10 +62,10 @@ export default function Nav() {
               style={({ isActive }) => ({
                 fontFamily: fonts.mono,
                 fontSize: 12,
-                color: isActive ? colors.blue : colors.inkSoft,
+                color: isActive ? activeColor : softColor,
               })}
             >
-              {l.code} <span style={{ fontFamily: fonts.body }}>{l.label}</span>
+              {l.label}
             </NavLink>
           ))}
         </nav>

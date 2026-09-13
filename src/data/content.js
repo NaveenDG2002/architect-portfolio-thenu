@@ -3,8 +3,9 @@ export const profile = {
   role: "Undergraduate, BSc (Hons) Architecture",
   school: "SLIIT, Sri Lanka",
   location: "Colombo, Sri Lanka",
+  tagline: "Section, light, and the tropical everyday.",
   statement:
-    "I design from the section outward, climate, material, and the way light moves through a plan before the plan itself. Most of the work here comes out of studio at SLIIT, tuned to Sri Lanka's tropical modernist lineage and the everyday buildings around it.",
+    "I'm an architecture undergraduate at SLIIT, working at the intersection of climate, material, and everyday life in Sri Lanka. My process begins in section — thinking through light, ventilation, and shade before the plan takes shape — drawing on the island's tropical modernist lineage while staying grounded in how people actually inhabit space. The work here spans studio proposals, house and room design, adaptive reuse, and institutional projects, each approached as a study in how architecture responds to its climate rather than resists it.",
   email: "thenurajapakshe@gmail.com",
   whatsapp: "+94 70 166 0536",
   whatsappLink: "https://wa.me/94701660536",
