@@ -48,10 +48,9 @@ export const workCategories = [
     description:
       "Placeholder text for a service center design. Replace with the real brief and approach.",
   },
-    {
+      {
     slug: "adaptive-reuse",
     title: "Adaptive Reuse",
-    imageFit: "cover",
     description:
       "This adaptive reuse project transforms the historic railway quarters in Dematagoda into a dynamic community performing platform. Historically, the Burgher community gathered and cultivated their rich cultural identity within this neighborhood. Drawing inspiration from that legacy, the design reimagines the physical architecture of a traditional railway platform into a vibrant space for artistic expression, social gatherings, and cultural events.\n\nAlongside the central performance space, the project integrates a museum, dining spaces, and a restaurant. As visitors move through the site, the spatial flow, materials, and sightlines evoke the immersive experience of stepping onto an authentic railway platform — bridging Dematagoda's rail history with contemporary public life.",
     features: [

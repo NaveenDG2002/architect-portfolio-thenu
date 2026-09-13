@@ -1,14 +1,171 @@
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { workCategories } from "../data/content";
 import { workImagesBySlug, backgroundBySlug } from "../utils/loadImages";
 import { colors, fonts } from "../styles/theme";
+
+function Lightbox({ images, index, onClose, onPrev, onNext, category }) {
+  useEffect(() => {
+    function onKeyDown(e) {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    }
+    window.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [onClose, onPrev, onNext]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 200,
+        background: "rgba(8, 9, 10, 0.94)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "24px",
+      }}
+    >
+      {/* Close button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label="Close"
+        style={{
+          position: "fixed",
+          top: 24,
+          right: 24,
+          width: 44,
+          height: 44,
+          border: "1px solid rgba(255,255,255,0.3)",
+          background: "rgba(255,255,255,0.05)",
+          color: "#fff",
+          fontSize: 20,
+          fontFamily: fonts.mono,
+          cursor: "pointer",
+          zIndex: 210,
+        }}
+      >
+        ✕
+      </button>
+
+      {/* Counter */}
+      <span
+        style={{
+          position: "fixed",
+          top: 34,
+          left: 24,
+          fontFamily: fonts.mono,
+          fontSize: 12,
+          color: "rgba(255,255,255,0.7)",
+        }}
+      >
+        {index + 1} / {images.length} — {category.title}
+      </span>
+
+      {/* Prev arrow */}
+      {images.length > 1 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onPrev();
+          }}
+          aria-label="Previous image"
+          style={{
+            position: "fixed",
+            left: 16,
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: 48,
+            height: 48,
+            border: "1px solid rgba(255,255,255,0.3)",
+            background: "rgba(255,255,255,0.05)",
+            color: "#fff",
+            fontSize: 20,
+            cursor: "pointer",
+            zIndex: 210,
+          }}
+        >
+          ‹
+        </button>
+      )}
+
+      {/* Next arrow */}
+      {images.length > 1 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
+          aria-label="Next image"
+          style={{
+            position: "fixed",
+            right: 16,
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: 48,
+            height: 48,
+            border: "1px solid rgba(255,255,255,0.3)",
+            background: "rgba(255,255,255,0.05)",
+            color: "#fff",
+            fontSize: 20,
+            cursor: "pointer",
+            zIndex: 210,
+          }}
+        >
+          ›
+        </button>
+      )}
+
+      <motion.img
+        key={index}
+        src={images[index]}
+        alt={`${category.title} ${index + 1}`}
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.25 }}
+        style={{
+          maxWidth: "92vw",
+          maxHeight: "88vh",
+          objectFit: "contain",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+        }}
+      />
+    </motion.div>
+  );
+}
 
 export default function WorksCategory() {
   const { slug } = useParams();
   const category = workCategories.find((c) => c.slug === slug);
   const images = workImagesBySlug[slug] || [];
   const background = backgroundBySlug[slug];
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const prevImage = useCallback(
+    () => setLightboxIndex((i) => (i - 1 + images.length) % images.length),
+    [images.length]
+  );
+  const nextImage = useCallback(
+    () => setLightboxIndex((i) => (i + 1) % images.length),
+    [images.length]
+  );
 
   if (!category) {
     return (
@@ -177,9 +334,7 @@ export default function WorksCategory() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: useCover
-                ? "repeat(auto-fit, minmax(340px, 1fr))"
-                : "repeat(auto-fit, minmax(340px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
               gap: 32,
               marginTop: 48,
               alignItems: useCover ? "stretch" : "start",
@@ -188,18 +343,18 @@ export default function WorksCategory() {
             {images.map((src, i) => (
               <motion.div
                 key={i}
+                onClick={() => setLightboxIndex(i)}
                 initial={{ opacity: 0, y: 60, scale: 0.94 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ scale: 1.02 }}
                 style={{
                   border: useCover
                     ? `1px solid ${background ? "rgba(255,255,255,0.2)" : colors.line}`
                     : "none",
                   background: useCover ? colors.paperRaised : "transparent",
                   overflow: "hidden",
-                  cursor: "pointer",
+                  cursor: "zoom-in",
                   display: "flex",
                   justifyContent: "center",
                   aspectRatio: useCover ? "4 / 3" : undefined,
@@ -212,8 +367,11 @@ export default function WorksCategory() {
                   alt={`${category.title} ${i + 1}`}
                   initial={{ scale: useCover ? 1.15 : 1.05 }}
                   whileInView={{ scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.9, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    scale: { duration: 0.9, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+                  }}
                   style={{
                     width: "100%",
                     height: useCover ? "100%" : "auto",
@@ -227,6 +385,19 @@ export default function WorksCategory() {
           </div>
         )}
       </div>
+
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            images={images}
+            index={lightboxIndex}
+            onClose={closeLightbox}
+            onPrev={prevImage}
+            onNext={nextImage}
+            category={category}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
