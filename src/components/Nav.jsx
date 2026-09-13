@@ -2,11 +2,10 @@ import { NavLink } from "react-router-dom";
 import { colors, fonts } from "../styles/theme";
 
 const links = [
-  { to: "/", code: "A-00", label: "Cover" },
-  { to: "/profile", code: "A-01", label: "Profile" },
-  { to: "/works", code: "A-02", label: "Selected Works" },
-  { to: "/process", code: "A-03", label: "Process" },
-  { to: "/contact", code: "A-04", label: "Contact" },
+  { to: "/",  label: "Cover" },
+  { to: "/works", label: "Academic" },
+  { to: "/process",  label: "Process" },
+  { to: "/contact",  label: "Contact" },
 ];
 
 export default function Nav() {

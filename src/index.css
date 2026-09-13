@@ -11,8 +11,8 @@ html {
 }
 
 body {
-  background-color: #eae7e0;
-  color: #17181a;
+  background-color: #f3ede3;
+  color: #1c2624;
   font-family: "IBM Plex Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,13 +34,29 @@ button {
 }
 
 ::selection {
-  background-color: #2f4b7c;
-  color: #eae7e0;
+  background-color: #c1622e;
+  color: #f3ede3;
 }
 
 :focus-visible {
-  outline: 2px solid #2f4b7c;
+  outline: 2px solid #c1622e;
   outline-offset: 3px;
+}
+
+@keyframes driftBand {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(0.6deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+.agate-drift {
+  animation: driftBand 11s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

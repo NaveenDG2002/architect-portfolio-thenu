@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Thenu Amarathunge",
+  name: "Thenu Rajapakshe",
   role: "Undergraduate, BSc (Hons) Architecture",
   school: "SLIIT, Sri Lanka",
   location: "Colombo, Sri Lanka",
