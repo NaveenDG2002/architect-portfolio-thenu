@@ -34,7 +34,7 @@ export const workCategories = [
     slug: "house-design",
     title: "House Design",
     description:
-      "Placeholder text for house design work. Replace with a description of the residential project shown here — site, brief, and design approach.",
+      "Set on an island-like plot in Thalangama, this modern minimalist residence is framed by a river to the left, open land to the right, and expansive paddy fields to the rear. Taking advantage of a natural three-meter slope dropping toward the wetlands, the design integrates a subterranean lower level carved into the gradient, anchored by a two-story superstructure topped with clean flat roofs. The arrival sequence centers on a visual axis leading directly to a serene Buddha statue, establishing an immediate sense of stillness upon entry.\n\nDesigned for a young couple, the home maximizes connection to its surroundings through floor-to-ceiling glass, floating balconies, and generous open terraces. Cantilevered outdoor living spaces capture river breezes while framing open views across the fields. Surrounding the residence, a sensory landscape engages sight, sound, smell, touch, and taste — combining running water, native flora, tactile natural stone, and cross-ventilating airflow to cool the microclimate naturally.",
   },
   {
     slug: "visitors-center",
