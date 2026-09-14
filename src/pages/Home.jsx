@@ -59,7 +59,7 @@ export default function Home() {
         >
           <div>
             <p style={{ fontFamily: fonts.mono, fontSize: 12, color: colors.blue }}>
-              A-00 — Cover Sheet
+              
             </p>
             <h1
               style={{
@@ -124,9 +124,7 @@ export default function Home() {
               color: colors.inkSoft,
             }}
           >
-            <span>Sheet A-00</span>
-            <span>Scale N.T.S.</span>
-            <span>{profile.location}</span>
+            
           </div>
         </div>
       </section>
@@ -140,7 +138,7 @@ export default function Home() {
           variants={fadeUp}
           style={{ fontFamily: fonts.mono, fontSize: 12, color: colors.blue }}
         >
-          A-01 — Profile
+          
         </motion.p>
 
         <div
@@ -152,42 +150,46 @@ export default function Home() {
             alignItems: "start",
           }}
         >
-          <motion.div
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  variants={fadeUp}
-  custom={0.1}
-  whileHover={{ y: -4 }}
-  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-  style={{
-    border: `1px solid ${colors.line}`,
-    background: colors.paperRaised,
-    aspectRatio: "4 / 5",
-    overflow: "hidden",
-    position: "relative",
-  }}
->
-  <img
-    src={profilePhoto}
-    alt={profile.name}
-    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-  />
-  <span
-    style={{
-      position: "absolute",
-      bottom: 8,
-      right: 8,
-      fontFamily: fonts.mono,
-      fontSize: 10,
-      color: colors.inkSoft,
-      background: colors.paper,
-      padding: "2px 6px",
-    }}
-  >
-    Fig. 01
-  </span>
-</motion.div>
+          <div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              custom={0.1}
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              style={{
+                border: `1px solid ${colors.line}`,
+                background: "transparent",
+                aspectRatio: "1 / 1",
+                borderRadius: "50%",
+                overflow: "hidden",
+                position: "relative",
+                width: "100%",
+                maxWidth: 320,
+              }}
+            >
+              <img
+                src={profilePhoto}
+                alt={profile.name}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </motion.div>
+
+            <p
+              style={{
+                marginTop: 12,
+                fontFamily: fonts.mono,
+                fontSize: 10,
+                color: colors.inkSoft,
+                textAlign: "center",
+                maxWidth: 320,
+              }}
+            >
+              Thenu Rajapakshe
+            </p>
+          </div>
 
           <div>
             <motion.h2
@@ -204,7 +206,7 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              Working between drawing and climate.
+              Working between drawing and Making.
             </motion.h2>
 
             <motion.p
@@ -237,7 +239,7 @@ export default function Home() {
                 ["Studying", profile.role],
                 ["Institution", profile.school],
                 ["Based in", profile.location],
-                ["Focus", "Tropical & residential design"],
+                
               ].map(([dt, dd]) => (
                 <div key={dt}>
                   <dt

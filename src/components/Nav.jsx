@@ -8,7 +8,6 @@ const links = [
   { to: "/works", label: "Academic" },
   { to: "/achievements", label: "Achievements" },
   { to: "/industrial", label: "Industrial" },
-  { to: "/process", label: "Process" },
   { to: "/contact", label: "Contact" },
   
   
