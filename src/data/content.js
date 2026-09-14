@@ -146,5 +146,46 @@ export const experience = [
 ];
 
 export const industrialCategories = [
-  { slug: "residential", title: "Residential Drawings" },
+  {
+    slug: "working-experience",
+    title: "Working Experience",
+    description:
+      "During this period, I supported design development, model making, and drawing preparation under Arct. Ruchitha Wijegunawardhana at Sunken Construction. The role offered hands-on exposure to how design intent is communicated to clients and translated into buildable documentation, alongside first-hand experience of a working architectural practice's day-to-day workflow.",
+  },
+  {
+    slug: "skills",
+    title: "Skills",
+    description:
+      "A working skillset built through studio coursework and hands-on practice, aimed at supporting design development from concept through presentation.",
+    features: [
+      {
+        title: "Model Making",
+        detail: "Physical and conceptual models built by hand, from massing studies to detailed presentation models.",
+      },
+      {
+        title: "Presenting",
+        detail: "Communicating design intent clearly to critics, clients, and juries through visual and verbal storytelling.",
+      },
+      {
+        title: "Hand & Digital Drafting",
+        detail: "Comfortable moving between freehand sketching and digital drawing production.",
+      },
+      {
+        title: "Site Analysis",
+        detail: "Reading context, climate, and site constraints as a starting point for design decisions.",
+      },
+    ],
+  },
+  {
+    slug: "partnerships",
+    title: "Partnerships",
+    description:
+      "Partnered with Vertex as a model maker, contributing to a range of ongoing architectural and conceptual model projects. The collaboration involves translating design drawings into precise physical and study models to support presentations and design reviews across multiple active projects.",
+    features: [
+      {
+        title: "Vertex — Model Maker",
+        detail: "Ongoing collaboration producing physical models for active architectural and conceptual projects.",
+      },
+    ],
+  },
 ];

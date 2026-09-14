@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Works from "./pages/Works";
 import WorksCategory from "./pages/WorksCategory";
 import Achievements from "./pages/Achievements";
+import Industrial from "./pages/Industrial";
+import IndustrialCategory from "./pages/IndustrialCategory";
 import Contact from "./pages/Contact";
 
 export default function App() {
@@ -20,6 +22,11 @@ export default function App() {
           </Route>
 
           <Route path="/achievements" element={<Achievements />} />
+
+          <Route path="/industrial" element={<Industrial />}>
+            <Route index element={<Navigate to="working-experience" replace />} />
+            <Route path=":slug" element={<IndustrialCategory />} />
+          </Route>
 
           <Route path="/contact" element={<Contact />} />
         </Routes>
