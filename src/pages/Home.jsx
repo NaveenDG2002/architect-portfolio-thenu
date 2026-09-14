@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { profile } from "../data/content";
 import { colors, fonts } from "../styles/theme";
 import profilePhoto from "../assets/profile.jpg";
+import ArchBackground from "../components/ArchBackground";
 
 const draw = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -26,7 +27,9 @@ const fadeUp = {
 
 export default function Home() {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
+      <ArchBackground />
+
       {/* Hero / Cover */}
       <section
         style={{
@@ -39,22 +42,6 @@ export default function Home() {
           paddingTop: 96,
         }}
       >
-        {/* Decorative drifting band, echoing a geological / architectural section */}
-        <div
-          className="agate-drift"
-          style={{
-            position: "absolute",
-            top: "-10%",
-            right: "-8%",
-            width: 420,
-            height: 420,
-            borderRadius: "50%",
-            background: `radial-gradient(circle at 30% 30%, ${colors.blue}22, transparent 60%), radial-gradient(circle at 70% 70%, ${colors.redline}22, transparent 60%)`,
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
-
         <div
           style={{
             position: "relative",
@@ -145,7 +132,7 @@ export default function Home() {
       </section>
 
       {/* Profile, folded into the same landing page */}
-      <section style={{ padding: "80px 24px 96px", maxWidth: 1152, margin: "0 auto" }}>
+      <section style={{ position: "relative", padding: "80px 24px 96px", maxWidth: 1152, margin: "0 auto" }}>
         <motion.p
           initial="hidden"
           whileInView="visible"
@@ -166,43 +153,41 @@ export default function Home() {
           }}
         >
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            custom={0.1}
-            whileHover={{ y: -4 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            style={{
-              border: `1px solid ${colors.line}`,
-              background: colors.paperRaised,
-              aspectRatio: "1 / 1",
-              borderRadius: "50%",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
-            <img
-              src={profilePhoto}
-              alt={profile.name}
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            />
-            <span
-              style={{
-                position: "absolute",
-                bottom: 8,
-                right: 8,
-                fontFamily: fonts.mono,
-                fontSize: 10,
-                color: colors.inkSoft,
-                background: colors.paper,
-                padding: "2px 6px",
-                borderRadius: 4,
-              }}
-            >
-              Fig. 01
-            </span>
-          </motion.div>
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={fadeUp}
+  custom={0.1}
+  whileHover={{ y: -4 }}
+  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+  style={{
+    border: `1px solid ${colors.line}`,
+    background: colors.paperRaised,
+    aspectRatio: "4 / 5",
+    overflow: "hidden",
+    position: "relative",
+  }}
+>
+  <img
+    src={profilePhoto}
+    alt={profile.name}
+    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+  />
+  <span
+    style={{
+      position: "absolute",
+      bottom: 8,
+      right: 8,
+      fontFamily: fonts.mono,
+      fontSize: 10,
+      color: colors.inkSoft,
+      background: colors.paper,
+      padding: "2px 6px",
+    }}
+  >
+    Fig. 01
+  </span>
+</motion.div>
 
           <div>
             <motion.h2

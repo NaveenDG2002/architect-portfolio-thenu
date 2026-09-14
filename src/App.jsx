@@ -7,11 +7,14 @@ import Achievements from "./pages/Achievements";
 import Industrial from "./pages/Industrial";
 import IndustrialCategory from "./pages/IndustrialCategory";
 import Contact from "./pages/Contact";
+import DevCredit from "./components/DevCredit";
 
 export default function App() {
   return (
     <div>
       <Nav />
+      <DevCredit />
+
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
