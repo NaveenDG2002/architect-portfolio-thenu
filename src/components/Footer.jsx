@@ -1,11 +1,30 @@
-import { profile } from "../data/content";
+import { colors, fonts } from "../styles/theme";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line py-8">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 font-mono text-[11px] text-ink-soft md:flex-row md:items-center md:justify-between md:px-10">
-        <span>&copy; {new Date().getFullYear()} {profile.name}</span>
-        <span>Drawn in React &amp; Tailwind CSS</span>
+    <footer
+      style={{
+        borderTop: `1px solid ${colors.line}`,
+        padding: "32px 24px",
+        marginTop: 80,
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1152,
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+          fontFamily: fonts.mono,
+          fontSize: 11,
+          color: colors.inkSoft,
+        }}
+      >
+        <span>© {new Date().getFullYear()} Thenu Rajapakshe</span>
+        <span>Developed by Naveen — Hometeam</span>
       </div>
     </footer>
   );

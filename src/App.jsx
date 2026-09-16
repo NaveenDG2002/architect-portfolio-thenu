@@ -7,13 +7,12 @@ import Achievements from "./pages/Achievements";
 import Industrial from "./pages/Industrial";
 import IndustrialCategory from "./pages/IndustrialCategory";
 import Contact from "./pages/Contact";
-import DevCredit from "./components/DevCredit";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
     <div>
       <Nav />
-      <DevCredit />
 
       <main>
         <Routes>
@@ -34,6 +33,8 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
+
+      <Footer />
     </div>
   );
 }
