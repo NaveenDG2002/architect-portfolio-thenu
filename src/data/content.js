@@ -37,30 +37,15 @@ export const workCategories = [
     description:
       "Perched on the crest of a high-altitude hill overlooking a massive exoplanetary waterfall, this living module serves as a specialized field base for a five-person interdisciplinary research team. Designed specifically for an exobiologist, the interior bridges the gap between extreme-environment survival and human-centered design. The layout establishes a seamless flow between high-tech scientific workflows and restorative personal space, creating a stable home environment while exploring uncharted alien terrain.\n\nThe interior program strategically balances functional utility with psychological well-being during extended off-world missions. A fully equipped bio-lab zone allows for immediate on-site sample processing, anchored visually by a dynamic bay window framing the waterfall view. To counteract the synthetic nature of deep-space travel, the habitat incorporates a curated collection of Earth antiques, a dedicated resting area, and acoustic instruments, creating a grounded sanctuary that supports both rigorous scientific discovery and personal downtime.",
   },
-  {
-    slug: "studio-design",
-    title: "Studio Design",
-    description:
-      "A working studio space designed as part of second-year coursework, selected for the 2026 SLIIT exhibition as one of the best second-year design projects. Replace this with the real project narrative.",
-  },
+  
   {
     slug: "house-design",
     title: "House Design",
     description:
       "Set on an island-like plot in Thalangama, this modern minimalist residence is framed by a river to the left, open land to the right, and expansive paddy fields to the rear. Taking advantage of a natural three-meter slope dropping toward the wetlands, the design integrates a subterranean lower level carved into the gradient, anchored by a two-story superstructure topped with clean flat roofs. The arrival sequence centers on a visual axis leading directly to a serene Buddha statue, establishing an immediate sense of stillness upon entry.\n\nDesigned for a young couple, the home maximizes connection to its surroundings through floor-to-ceiling glass, floating balconies, and generous open terraces. Cantilevered outdoor living spaces capture river breezes while framing open views across the fields. Surrounding the residence, a sensory landscape engages sight, sound, smell, touch, and taste — combining running water, native flora, tactile natural stone, and cross-ventilating airflow to cool the microclimate naturally.",
   },
-  {
-    slug: "visitors-center",
-    title: "Visitors Center",
-    description:
-      "Placeholder text for a visitors center proposal. Replace with the project's site context and design intent.",
-  },
-  {
-    slug: "service-center",
-    title: "Service Center",
-    description:
-      "Placeholder text for a service center design. Replace with the real brief and approach.",
-  },
+  
+  
   {
     slug: "adaptive-reuse",
     title: "Adaptive Reuse",
@@ -146,11 +131,21 @@ export const experience = [
 ];
 
 export const industrialCategories = [
-  {
+    {
     slug: "working-experience",
     title: "Working Experience",
-    description:
-      "During this period, I supported design development, model making, and drawing preparation under Arct. Ruchitha Wijegunawardhana at Sunken Construction. The role offered hands-on exposure to how design intent is communicated to clients and translated into buildable documentation, alongside first-hand experience of a working architectural practice's day-to-day workflow.",
+    role: "Architect Assistant",
+    period: "July 2025 — December 2025",
+    mentor: "Under Arct. Ruchitha Wijegunawardhana, Chief Architect at Sunken Construction, Chartered Architect.",
+    mentorImage: "ruchitha-wijegunawardhana.jpg",
+    companyLogo: "sunken-construction-logo.png",
+    points: [
+      "Supported design development from early concept sketches through to detailed drawing preparation.",
+      "Produced physical and digital study models to communicate design intent during internal reviews.",
+      "Assisted in translating design ideas into buildable documentation for client presentations.",
+      "Gained first-hand exposure to the day-to-day workflow of a working architectural practice.",
+      "Observed and supported client communication, understanding how design decisions are explained and justified.",
+    ],
   },
   {
     slug: "skills",
