@@ -185,7 +185,7 @@ export const industrialCategories = [
       "Partnered with Vertex as a model maker, contributing to a range of ongoing architectural and conceptual model projects. The collaboration involves translating design drawings into precise physical and study models to support presentations and design reviews across multiple active projects.",
     features: [
       {
-        title: "Vertex — Model Maker",
+        title: "Vertex — Model Maker (CEO)",
         detail: "Ongoing collaboration producing physical models for active architectural and conceptual projects.",
       },
     ],
